@@ -1,5 +1,6 @@
 package tmnt.example.bottomnavigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -7,6 +8,9 @@ import android.widget.RelativeLayout;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import tmnt.example.bottomnavigation.activity.Activity1;
+import tmnt.example.bottomnavigation.activity.Activity2;
+import tmnt.example.bottomnavigation.activity.Activity3;
 import tmnt.example.bottomnavigation.util.SharedPreferencesUtil;
 import tmnt.example.bottomnavigation.weight.BottomNavigationLayout;
 import tmnt.example.bottomnavigation.weight.Controller;
@@ -101,7 +105,26 @@ public class MainActivity extends AppCompatActivity {
         controller.addTabItemClickListener(new OnTabItemSelectListener() {
             @Override
             public void onSelected(int index, Object tag) {
-                Log.i(TAG, "onSelected: " + index + "   " + tag);
+                Intent intent = new Intent();
+                switch (index) {
+                    case 0:
+                        intent.setClass(MainActivity.this, Activity1.class);
+                        break;
+                    case 1:
+                        intent.setClass(MainActivity.this, Activity2.class);
+                        break;
+                    case 2:
+                        intent.setClass(MainActivity.this, Activity3.class);
+                        break;
+                    case 3:
+                        intent.setClass(MainActivity.this, Activity1.class);
+                        break;
+                    case 4:
+                        intent.setClass(MainActivity.this, Activity2.class);
+                        break;
+
+                }
+                startActivity(intent);
             }
 
             @Override

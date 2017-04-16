@@ -10,9 +10,11 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -61,7 +63,10 @@ public class TabItem extends LinearLayout {
         view = LayoutInflater.from(context).inflate(R.layout.bottom_item_lay, null);
         bottomImg = (ImageView) view.findViewById(R.id.img_bottom);
         bottomTV = (TextView) view.findViewById(R.id.tv_bottom);
-        addView(view);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT
+                , LayoutParams.MATCH_PARENT);
+        layoutParams.gravity = Gravity.CENTER;
+        addView(view, layoutParams);
     }
 
     private void setTest(String text) {
@@ -157,13 +162,9 @@ public class TabItem extends LinearLayout {
             tabItem.setTag(mObject);
             // tabItem.addView(tabItem.view);
             tabItem.setIcon(false);
-            tabItem.setOnTouchListener(new OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    tabItem.mHandler.obtainMessage(2001, v.getTag()).sendToTarget();
-                    return true;
-                }
-            });
+            Log.i(TAG, "build: " + tabItem);
+            tabItem.setOnClickListener(v ->
+                    tabItem.mHandler.obtainMessage(2001, v.getTag()).sendToTarget());
             return tabItem;
 
         }
