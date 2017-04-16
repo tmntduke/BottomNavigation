@@ -98,7 +98,6 @@ public class TabItem extends LinearLayout {
         Bitmap bimap = ((BitmapDrawable) getResources().getDrawable(res)).getBitmap();
         Bitmap outBitmap = Bitmap.createBitmap(bimap.getWidth(), bimap.getHeight(), Bitmap.Config.ARGB_8888);
 
-
         Log.i(TAG, "drawIcon: " + bimap.getWidth() + "  " + bimap.getHeight());
         Bitmap alphaBitmap = bimap.extractAlpha();
         Canvas canvas = new Canvas(outBitmap);
