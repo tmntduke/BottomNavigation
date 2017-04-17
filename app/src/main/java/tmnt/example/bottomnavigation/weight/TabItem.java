@@ -69,9 +69,12 @@ public class TabItem extends LinearLayout {
         addView(view, layoutParams);
     }
 
-    private void setTest(String text) {
+    private void setTest(String text, Context context) {
         Log.i(TAG, "setTest: " + text);
         if (TextUtils.isEmpty(text)) {
+            LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT
+                    , LayoutParams.MATCH_PARENT);
+            bottomImg.setLayoutParams(layoutParams);
             bottomTV.setVisibility(GONE);
         } else {
             bottomTV.setText(text);
@@ -155,7 +158,7 @@ public class TabItem extends LinearLayout {
             TabItem tabItem = new TabItem(mContext);
             tabItem.defaultColor = defaultColor;
             tabItem.selectColor = selectColor;
-            tabItem.setTest(test);
+            tabItem.setTest(test, mContext);
             tabItem.res = res;
             Log.i(TAG, "build: " + mObject);
             tabItem.setTag(mObject);
